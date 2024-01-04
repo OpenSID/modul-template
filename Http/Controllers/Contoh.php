@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Contoh\Models\Agama;
+
 /*
  *
  * File ini bagian dari:
@@ -35,24 +37,32 @@
  *
  */
 
-
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Prodeskel extends MY_Controller
+class Contoh extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
     }
 
+    // penggunaan view
     public function index()
     {
-        dd('Ini prodeskel');
+        return view('index');
     }
 
-    public function data()
+    // penggunaan model
+    public function model()
     {
-        $contoh = ['data' => 'data prodeskel'];
+        $contoh = Agama::get()->toArray();
+        dd($contoh);
+    }
+
+    // penggunaan helper
+    public function helper()
+    {
+        $contoh = contoh();
         dd($contoh);
     }
 }

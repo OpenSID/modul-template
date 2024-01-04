@@ -35,5 +35,6 @@
  *
  */
 
-Route::get('prodeskel', 'Prodeskel@index');
-Route::get('prodeskel/data', 'Prodeskel@data');
+Route::get('contoh', 'Contoh@index');
+Route::get('contoh/model', 'Contoh@model');
+Route::get('contoh/helper', 'Contoh@helper');
