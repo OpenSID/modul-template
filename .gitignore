@@ -1,0 +1,8 @@
+# Abaikan File
+.php-cs-fixer.cache
+composer.lock
+
+# Abaikan Folder
+.cache-rector/
+node_modules/
+vendor/

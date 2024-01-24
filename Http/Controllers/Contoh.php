@@ -39,7 +39,7 @@ use Modules\Contoh\Models\Agama;
 
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Contoh extends MY_Controller
+class Contoh extends AdminModulController
 {
     public function __construct()
     {
