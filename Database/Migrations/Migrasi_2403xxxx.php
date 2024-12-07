@@ -35,18 +35,10 @@
  *
  */
 
-use SettingModul;
-use App\Models\Modul;
 use App\Enums\StatusEnum;
-use App\Models\GrupAkses;
-use Illuminate\Support\Facades\DB;
-use Modules\Prodeskel\Enums\DDKEnum;
-use Illuminate\Support\Facades\Schema;
+use App\Models\Modul;
 use Illuminate\Database\Schema\Blueprint;
-use Modules\Prodeskel\Models\ProdeskelCustomValue;
-use Modules\Prodeskel\Enums\DDKMaxCustomDataPilihanEnum;
-use Modules\Prodeskel\Enums\DDKPilihanProduksiTahunIniEnum;
-use Modules\Prodeskel\Enums\DDKPilihanBahanGalianAnggotaEnum;
+use Illuminate\Support\Facades\Schema;
 
 defined('BASEPATH') || exit('No direct script access allowed');
 
@@ -66,23 +58,23 @@ return new class () extends MY_model {
     {
         // Menu Utama
         $hasil = $hasil && $this->tambah_modul([
-                'config_id'  => identitas('id'),
-                'modul'      => 'Contoh',
-                'url'        => null,
-                'slug'       => 'contoh',
-                'aktif'      => StatusEnum::YA,
-                'ikon'       => 'fa-globe',
-                'urut'       => Modul::max('urut') + 1,
-                'level'      => 1,
-                'parent'     => 0,
-                'hidden'     => 0,
-                'ikon_kecil' => 'fa-globe',
-            ]);
+            'config_id'  => identitas('id'),
+            'modul'      => 'Contoh',
+            'url'        => null,
+            'slug'       => 'contoh',
+            'aktif'      => StatusEnum::YA,
+            'ikon'       => 'fa-globe',
+            'urut'       => Modul::max('urut') + 1,
+            'level'      => 1,
+            'parent'     => 0,
+            'hidden'     => 0,
+            'ikon_kecil' => 'fa-globe',
+        ]);
 
         // Sub Menu
         $contoh = Modul::whereSlug('contoh')->first();
 
-        $hasil = $hasil && $this->tambah_modul([
+        return $hasil && $this->tambah_modul([
             'config_id'  => identitas('id'),
             'modul'      => 'Sub Contoh',
             'url'        => 'sub-contoh',
@@ -95,13 +87,11 @@ return new class () extends MY_model {
             'hidden'     => 0,
             'ikon_kecil' => 'fa-globe',
         ]);
-
-        return $hasil;
     }
 
     protected function tambahTabel($hasil)
     {
-        Schema::create('tabel_contoh', function (Blueprint $table) {
+        Schema::create('tabel_contoh', static function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('config_id');
             $table->string('nama');

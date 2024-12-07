@@ -21,7 +21,6 @@
 	"scripts": {
 		"style-fix": [
 			"php-cs-fixer fix --allow-risky=yes",
-			"rector process --dry-run",
 			"npm run prettier-blade"
 		]
 	}
