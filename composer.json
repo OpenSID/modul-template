@@ -1,6 +1,6 @@
 {
-	"name": "opensid-modules/contoh",
-	"description": "Modul Contoh untuk OpenSID",
+	"name": "opensid-modules/template",
+	"description": "Template untuk pengembangan Modul OpenSID",
 	"license": "GPL-3.0-or-later",
 	"type": "library",
 	"keywords": [

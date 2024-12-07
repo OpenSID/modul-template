@@ -35,18 +35,34 @@
  *
  */
 
-namespace Modules\Template\Models;
+namespace Modules\Template\Libraries;
 
-use App\Models\BaseModel;
-
-defined('BASEPATH') || exit('No direct script access allowed');
-
-class Agama extends BaseModel
+class ContohLibrary
 {
     /**
-     * The table associated with the model.
-     *
-     * @var string
+     * Hitung jumlah kata dalam sebuah string.
      */
-    protected $table = 'tweb_penduduk_agama';
+    public static function wordCount(string $text): int
+    {
+        return str_word_count($text);
+    }
+
+    /**
+     * Balikkan urutan kata dalam sebuah string.
+     */
+    public static function reverseWords(string $text): string
+    {
+        $words    = explode(' ', $text);
+        $reversed = array_reverse($words);
+
+        return implode(' ', $reversed);
+    }
+
+    /**
+     * Ubah huruf pertama setiap kata menjadi huruf besar.
+     */
+    public static function capitalizeWords(string $text): string
+    {
+        return ucwords($text);
+    }
 }

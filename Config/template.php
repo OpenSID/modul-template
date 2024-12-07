@@ -35,18 +35,6 @@
  *
  */
 
-namespace Modules\Template\Models;
-
-use App\Models\BaseModel;
-
-defined('BASEPATH') || exit('No direct script access allowed');
-
-class Agama extends BaseModel
-{
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'tweb_penduduk_agama';
-}
+return [
+    'view_path' => 'template',
+];

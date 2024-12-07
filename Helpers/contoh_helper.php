@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Contoh\Models\Agama;
+use Modules\Template\Models\Agama;
 
 if (! function_exists('contoh')) {
     /**

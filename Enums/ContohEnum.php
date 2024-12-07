@@ -1,7 +1,5 @@
 <?php
 
-use Modules\Contoh\Models\Agama;
-
 /*
  *
  * File ini bagian dari:
@@ -13,7 +11,7 @@ use Modules\Contoh\Models\Agama;
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2023 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2024 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -31,38 +29,31 @@ use Modules\Contoh\Models\Agama;
  * @package   OpenSID
  * @author    Tim Pengembang OpenDesa
  * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright Hak Cipta 2016 - 2023 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @copyright Hak Cipta 2016 - 2024 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  * @license   http://www.gnu.org/licenses/gpl.html GPL V3
  * @link      https://github.com/OpenSID/OpenSID
  *
  */
 
-defined('BASEPATH') || exit('No direct script access allowed');
+namespace Modules\Template\Enums;
 
-class Contoh extends AdminModulController
+use App\Enums\BaseEnum;
+
+class ContohEnum extends BaseEnum
 {
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    public const CONTOH_1 = 1;
+    public const CONTOH_2 = 2;
+    public const CONTOH_3 = 3;
 
-    // penggunaan view
-    public function index()
+    /**
+     * Override method all()
+     */
+    public static function all(): array
     {
-        return view('index');
-    }
-
-    // penggunaan model
-    public function model()
-    {
-        $contoh = Agama::get()->toArray();
-        dd($contoh);
-    }
-
-    // penggunaan helper
-    public function helper()
-    {
-        $contoh = contoh();
-        dd($contoh);
+        return [
+            self::CONTOH_1 => 'Contoh 1',
+            self::CONTOH_2 => 'Contoh 2',
+            self::CONTOH_3 => 'Contoh 3',
+        ];
     }
 }

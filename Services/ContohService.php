@@ -35,18 +35,33 @@
  *
  */
 
-namespace Modules\Template\Models;
+namespace Modules\Template\Services;
 
-use App\Models\BaseModel;
-
-defined('BASEPATH') || exit('No direct script access allowed');
-
-class Agama extends BaseModel
+class ContohService
 {
     /**
-     * The table associated with the model.
+     * Hitung penjumlahan dua angka.
      *
-     * @var string
+     * @param float|int $a
+     * @param float|int $b
+     *
+     * @return float|int
      */
-    protected $table = 'tweb_penduduk_agama';
+    public function add($a, $b)
+    {
+        return $a + $b;
+    }
+
+    /**
+     * Hitung perkalian dua angka.
+     *
+     * @param float|int $a
+     * @param float|int $b
+     *
+     * @return float|int
+     */
+    public function multiply($a, $b)
+    {
+        return $a * $b;
+    }
 }

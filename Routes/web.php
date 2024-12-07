@@ -35,6 +35,18 @@
  *
  */
 
-Route::get('contoh', 'Contoh@index');
-Route::get('contoh/model', 'Contoh@model');
-Route::get('contoh/helper', 'Contoh@helper');
+Route::group('sub-contoh', ['namespace' => 'Template/BackEnd'], static function (): void {
+    Route::get('/', 'Contoh@index');
+    Route::get('model', 'Contoh@model');
+    Route::get('helper', 'Contoh@helper');
+    Route::get('config', 'Contoh@config');
+    Route::get('trait', 'Contoh@trait');
+    Route::get('service', 'Contoh@service');
+    Route::get('library', 'Contoh@library');
+    Route::get('enum', 'Contoh@enum');
+    Route::get('storage', 'Contoh@storage');
+});
+
+Route::group('contoh', ['namespace' => 'Template/FrontEnd'], static function (): void {
+    Route::get('/', 'Publik@index');
+});
