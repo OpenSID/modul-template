@@ -35,76 +35,66 @@
  *
  */
 
-use App\Enums\StatusEnum;
 use App\Models\Modul;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\StatusEnum;
+use App\Libraries\Migrator;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
-defined('BASEPATH') || exit('No direct script access allowed');
-
-return new class () extends MY_model {
+return new class () extends Migrator {
     public function up(): void
     {
-        $hasil = true;
-
         // Tambah Navigasi
-        $hasil = $hasil && $this->tambahMenu($hasil);
+        $this->tambahModul();
 
         // Tambah Tabel
-        $hasil = $hasil && $this->tambahTabel($hasil);
+        $this->tambahTabel();
     }
 
-    protected function tambahMenu($hasil)
+    protected function tambahModul()
     {
         // Menu Utama
-        $hasil = $hasil && $this->tambah_modul([
+        $this->createModul([
             'config_id'  => identitas('id'),
             'modul'      => 'Contoh',
-            'url'        => null,
+            'url'        => '',
             'slug'       => 'contoh',
             'aktif'      => StatusEnum::YA,
             'ikon'       => 'fa-globe',
-            'urut'       => Modul::max('urut') + 1,
             'level'      => 1,
             'parent'     => 0,
             'hidden'     => 0,
-            'ikon_kecil' => 'fa-globe',
         ]);
 
         // Sub Menu
-        $contoh = Modul::whereSlug('contoh')->first();
-
-        return $hasil && $this->tambah_modul([
+        $this->createModul([
             'config_id'  => identitas('id'),
             'modul'      => 'Sub Contoh',
             'url'        => 'sub-contoh',
             'slug'       => 'sub-contoh',
             'aktif'      => StatusEnum::YA,
             'ikon'       => 'fa-globe',
-            'urut'       => Modul::whereParent($contoh->id)->max('urut') + 1 ?? 1,
             'level'      => 2,
-            'parent'     => $contoh->id,
+            'parent'     => Modul::whereSlug('contoh')->first()->id,
             'hidden'     => 0,
-            'ikon_kecil' => 'fa-globe',
         ]);
     }
 
-    protected function tambahTabel($hasil)
+    protected function tambahTabel()
     {
-        Schema::create('tabel_contoh', static function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('config_id');
-            $table->string('nama');
-            $table->timestamps();
-        });
-
-        return $hasil;
+        if (! Schema::hasTable('tabel_contoh')) {
+            Schema::create('tabel_contoh', static function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('config_id');
+                $table->string('nama');
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void
     {
-        $prodeskel = Modul::whereSlug('prodeskel')->first();
-        Modul::whereParent($prodeskel->id)->delete();
+        $this->deleteModul(['config_id' => identitas('id'), 'slug' => 'contoh']);
 
         Schema::dropIfExists('tabel_contoh');
     }
