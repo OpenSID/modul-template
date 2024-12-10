@@ -35,13 +35,16 @@
  *
  */
 
-use App\Enums\StatusEnum;
-use App\Libraries\Migrator;
 use App\Models\Modul;
-use Illuminate\Database\Schema\Blueprint;
+use App\Traits\Migrator;
+use App\Enums\StatusEnum;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
-return new class () extends Migrator {
+return new class () {
+
+    use Migrator;
+
     public function up(): void
     {
         // Tambah Navigasi
