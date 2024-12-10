@@ -35,11 +35,11 @@
  *
  */
 
-use App\Models\Modul;
 use App\Enums\StatusEnum;
 use App\Libraries\Migrator;
-use Illuminate\Support\Facades\Schema;
+use App\Models\Modul;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class () extends Migrator {
     public function up(): void
@@ -55,28 +55,28 @@ return new class () extends Migrator {
     {
         // Menu Utama
         $this->createModul([
-            'config_id'  => identitas('id'),
-            'modul'      => 'Contoh',
-            'url'        => '',
-            'slug'       => 'contoh',
-            'aktif'      => StatusEnum::YA,
-            'ikon'       => 'fa-globe',
-            'level'      => 1,
-            'parent'     => 0,
-            'hidden'     => 0,
+            'config_id' => identitas('id'),
+            'modul'     => 'Contoh',
+            'url'       => '',
+            'slug'      => 'contoh',
+            'aktif'     => StatusEnum::YA,
+            'ikon'      => 'fa-globe',
+            'level'     => 1,
+            'parent'    => 0,
+            'hidden'    => 0,
         ]);
 
         // Sub Menu
         $this->createModul([
-            'config_id'  => identitas('id'),
-            'modul'      => 'Sub Contoh',
-            'url'        => 'sub-contoh',
-            'slug'       => 'sub-contoh',
-            'aktif'      => StatusEnum::YA,
-            'ikon'       => 'fa-globe',
-            'level'      => 2,
-            'parent'     => Modul::whereSlug('contoh')->first()->id,
-            'hidden'     => 0,
+            'config_id' => identitas('id'),
+            'modul'     => 'Sub Contoh',
+            'url'       => 'sub-contoh',
+            'slug'      => 'sub-contoh',
+            'aktif'     => StatusEnum::YA,
+            'ikon'      => 'fa-globe',
+            'level'     => 2,
+            'parent'    => Modul::whereSlug('contoh')->first()->id,
+            'hidden'    => 0,
         ]);
     }
 

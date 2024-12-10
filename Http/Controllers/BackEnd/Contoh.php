@@ -47,9 +47,13 @@ class Contoh extends AdminModulController
 {
     use ContohTrait;
 
+    public $modul_ini     = 'contoh';
+    public $sub_modul_ini = 'sub-contoh';
+
     public function __construct()
     {
         parent::__construct();
+        isCan('b');
     }
 
     // Views
@@ -143,5 +147,29 @@ class Contoh extends AdminModulController
         }
 
         exit;
+    }
+
+    // Hak Akses Baca
+    public function baca()
+    {
+        isCan('b');
+
+        return json(['message' => 'Anda memiliki hak akses baca']);
+    }
+
+    // Hak Akses tambah/ubah
+    public function form()
+    {
+        isCan('u');
+
+        return json(['message' => 'Anda memiliki hak akses tambah/ubah']);
+    }
+
+    // Hak Akses Hapus
+    public function hapus()
+    {
+        isCan('h');
+
+        return json(['message' => 'Anda memiliki hak akses hapus']);
     }
 }

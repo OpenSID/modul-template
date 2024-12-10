@@ -45,6 +45,9 @@ Route::group('sub-contoh', ['namespace' => 'Template/BackEnd'], static function 
     Route::get('library', 'Contoh@library');
     Route::get('enum', 'Contoh@enum');
     Route::get('storage', 'Contoh@storage');
+    Route::get('baca', 'Contoh@baca');
+    Route::get('form', 'Contoh@form');
+    Route::get('delete', 'Contoh@delete');
 });
 
 Route::group('contoh', ['namespace' => 'Template/FrontEnd'], static function (): void {
