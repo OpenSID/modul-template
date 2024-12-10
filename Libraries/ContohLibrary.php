@@ -55,7 +55,7 @@ class ContohLibrary
         $words    = explode(' ', $text);
         $reversed = array_reverse($words);
 
-        return   implode(' ', $reversed);
+        return implode(' ', $reversed);
     }
 
     /**
