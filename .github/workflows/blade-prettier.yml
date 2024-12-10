@@ -3,6 +3,7 @@ name: Blade Prettier
 on:
   pull_request:
     branches:
+      - 'master'
       - 'dev'
     paths:
       - '.github/workflows/blade-prettier.yml'
