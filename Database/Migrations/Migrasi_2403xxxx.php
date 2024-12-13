@@ -35,10 +35,9 @@
  *
  */
 
-use App\Enums\StatusEnum;
-use App\Models\Modul;
 use App\Traits\Migrator;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class () {
@@ -61,24 +60,19 @@ return new class () {
             'modul'     => 'Contoh',
             'url'       => '',
             'slug'      => 'contoh',
-            'aktif'     => StatusEnum::YA,
             'ikon'      => 'fa-globe',
             'level'     => 1,
-            'parent'    => 0,
-            'hidden'    => 0,
         ]);
 
         // Sub Menu
         $this->createModul([
-            'config_id' => identitas('id'),
-            'modul'     => 'Sub Contoh',
-            'url'       => 'sub-contoh',
-            'slug'      => 'sub-contoh',
-            'aktif'     => StatusEnum::YA,
-            'ikon'      => 'fa-globe',
-            'level'     => 2,
-            'parent'    => Modul::whereSlug('contoh')->first()->id,
-            'hidden'    => 0,
+            'config_id'   => identitas('id'),
+            'modul'       => 'Sub Contoh',
+            'url'         => 'sub-contoh',
+            'slug'        => 'sub-contoh',
+            'ikon'        => 'fa-globe',
+            'level'       => 2,
+            'parent_slug' => 'contoh',
         ]);
     }
 
@@ -98,6 +92,9 @@ return new class () {
     {
         $this->deleteModul(['config_id' => identitas('id'), 'slug' => 'contoh']);
 
-        Schema::dropIfExists('tabel_contoh');
+        // Jika database gabungan, jangan hapus tabel
+        if (DB::table('config')->count() > 1) {
+            Schema::dropIfExists('tabel_contoh');
+        }
     }
 };

@@ -59,7 +59,7 @@ class Contoh extends AdminModulController
     // Views
     public function index()
     {
-        return view('backend.index');
+        return view('template::backend.index');
     }
 
     // Models

@@ -58,6 +58,7 @@ class TemplateServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerViews();
     }
 
     /**
@@ -67,5 +68,12 @@ class TemplateServiceProvider extends ServiceProvider
      */
     public function register()
     {
+    }
+
+    public function registerViews(): void
+    {
+        $sourcePath = FCPATH . 'Modules' . DIRECTORY_SEPARATOR . $this->moduleName . DIRECTORY_SEPARATOR . 'Views';
+
+        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
     }
 }
