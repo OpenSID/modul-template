@@ -36,5 +36,5 @@
  */
 
 return [
-    'view_path' => 'template',
+    'name' => 'Template',
 ];
