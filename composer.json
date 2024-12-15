@@ -23,7 +23,9 @@
 		"style-fix": [
 			"npm run prettier-blade",
 			"php-cs-fixer fix --allow-risky=yes",
-			"rector process"
+			"php Tools/Variable.php",
+			"php Tools/Function.php",
+			"php Tools/Class.php"
 		]
 	}
 }

@@ -49,6 +49,7 @@ class Contoh extends AdminModulController
 
     public $modul_ini     = 'contoh';
     public $sub_modul_ini = 'sub-contoh';
+    public $subModulAkas = 'sub-contoh';
 
     public function __construct()
     {
@@ -57,7 +58,7 @@ class Contoh extends AdminModulController
     }
 
     // Views
-    public function index()
+    public function indexAkas()
     {
         return view('template::backend.index');
     }
