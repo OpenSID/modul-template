@@ -50,6 +50,10 @@ return new class () {
 
         // Tambah Tabel
         $this->tambahTabel();
+
+        // Panggil Seeder
+        // $this->call(OtherSeeder::class);
+        // (new TemplateSeeder())->run();
     }
 
     protected function tambahModul()
