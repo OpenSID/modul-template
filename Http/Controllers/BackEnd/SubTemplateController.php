@@ -137,7 +137,7 @@ class SubTemplateController extends AdminModulController
     // Storage
     public function storage()
     {
-        $file = module_storage('app/template.txt');
+        $file = module_storage('template', 'app/template.txt');
 
         if (file_exists($file)) {
             header('Content-Disposition: attachment; filename="' . basename($file) . '"');
