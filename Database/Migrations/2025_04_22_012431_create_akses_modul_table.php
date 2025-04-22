@@ -36,11 +36,11 @@
  */
 
 use App\Traits\Migrator;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Modules\Template\Models\TemplateModel;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Modules\Template\Database\Seeders\TemplateSeeder;
+use Modules\Template\Models\TemplateModel;
 
 return new class () extends Migration {
     use Migrator;
