@@ -35,12 +35,21 @@
  *
  */
 
-defined('BASEPATH') || exit('No direct script access allowed');
+namespace Modules\Template\Traits;
 
-class Publik extends AdminModulController
+use Illuminate\Support\Facades\Log;
+
+trait TemplateTrait
 {
-    public function index()
+    /**
+     * Tambahkan log ketika data ditampilkan.
+     *
+     * @param string $message
+     *
+     * @return void
+     */
+    public function logData($message)
     {
-        return view('frontend.index');
+        Log::info($message);
     }
 }

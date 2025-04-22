@@ -35,21 +35,24 @@
  *
  */
 
-Route::group('sub-contoh', ['namespace' => 'Template/BackEnd'], static function (): void {
-    Route::get('/', 'Contoh@index');
-    Route::get('model', 'Contoh@model');
-    Route::get('helper', 'Contoh@helper');
-    Route::get('config', 'Contoh@config');
-    Route::get('trait', 'Contoh@trait');
-    Route::get('service', 'Contoh@service');
-    Route::get('library', 'Contoh@library');
-    Route::get('enum', 'Contoh@enum');
-    Route::get('storage', 'Contoh@storage');
-    Route::get('baca', 'Contoh@baca');
-    Route::get('form', 'Contoh@form');
-    Route::get('delete', 'Contoh@delete');
+Route::group('template', static function (): void {
+    Route::group('/sub-template', ['namespace' => 'Template/BackEnd'], static function (): void {
+        Route::get('/', 'SubTemplateController@index');
+        Route::get('model', 'SubTemplateController@model');
+        Route::get('helper', 'SubTemplateController@helper');
+        Route::get('config', 'SubTemplateController@config');
+        Route::get('trait', 'SubTemplateController@trait');
+        Route::get('service', 'SubTemplateController@service');
+        Route::get('library', 'SubTemplateController@library');
+        Route::get('enum', 'SubTemplateController@enum');
+        Route::get('storage', 'SubTemplateController@storage');
+        Route::get('baca', 'SubTemplateController@baca');
+        Route::get('form', 'SubTemplateController@form');
+        Route::get('delete', 'SubTemplateController@delete');
+    });
+
+    Route::group('/', ['namespace' => 'Template/FrontEnd'], static function (): void {
+        Route::get('/', 'PublikController@index');
+    });
 });
 
-Route::group('contoh', ['namespace' => 'Template/FrontEnd'], static function (): void {
-    Route::get('/', 'Publik@index');
-});

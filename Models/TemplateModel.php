@@ -35,25 +35,25 @@
  *
  */
 
-namespace Modules\Template\Enums;
+namespace Modules\Template\Models;
 
-use App\Enums\BaseEnum;
+use App\Traits\Uuid;
+use App\Traits\Author;
+use App\Traits\ConfigId;
+use App\Models\BaseModel;
 
-class ContohEnum extends BaseEnum
+defined('BASEPATH') || exit('No direct script access allowed');
+
+class TemplateModel extends BaseModel
 {
-    public const CONTOH_1 = 1;
-    public const CONTOH_2 = 2;
-    public const CONTOH_3 = 3;
+    use ConfigId;
+    use Uuid;
+    use Author;
 
     /**
-     * Override method all()
+     * The table associated with the model.
+     *
+     * @var string
      */
-    public static function all(): array
-    {
-        return [
-            self::CONTOH_1 => 'Contoh 1',
-            self::CONTOH_2 => 'Contoh 2',
-            self::CONTOH_3 => 'Contoh 3',
-        ];
-    }
+    protected $table = 'template_contoh';
 }

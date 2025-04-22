@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Template</title>
-    <link rel="stylesheet" href="{{ module_asset('css/contoh.css') }}">
+    <link rel="stylesheet" href="{{ module_asset('template', 'css/contoh.css') }}">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <p>&copy; 2024 Halaman Template. Semua Hak Dilindungi.</p>
     </footer>
     <!-- Link ke JavaScript -->
-    <script src="{{ module_asset('js/contoh.js') }}"></script>
+    <script src="{{ module_asset('template', 'js/contoh.js') }}"></script>
 </body>
 
 </html>

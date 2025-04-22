@@ -35,74 +35,25 @@
  *
  */
 
-namespace Modules\Template\Providers;
+namespace Modules\Template\Enums;
 
-use Illuminate\Support\ServiceProvider;
+use App\Enums\BaseEnum;
 
-class TemplateServiceProvider extends ServiceProvider
+class TemplateEnum extends BaseEnum
 {
-    /**
-     * @var string
-     */
-    protected $moduleName = 'Template';
+    public const Coba_1 = 1;
+    public const Coba_2 = 2;
+    public const Coba_3 = 3;
 
     /**
-     * @var string
+     * Override method all()
      */
-    protected $moduleNameLower = 'template';
-
-    /**
-     * Boot the application events.
-     *
-     * @return void
-     */
-    public function boot()
+    public static function all(): array
     {
-        $this->registerConfig();
-        $this->registerHelpers();
-        $this->registerViews();
-    }
-
-    /**
-     * Register config.
-     *
-     * @return void
-     */
-    protected function registerConfig()
-    {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php',
-            $this->moduleNameLower
-        );
-    }
-
-    /**
-     * Register helpers.
-     * 
-     * @return void
-     */
-    protected function registerHelpers()
-    {
-        $helperPath = __DIR__ . '/../Helpers/template_helper.php';
-
-        if (file_exists($helperPath)) {
-            require_once $helperPath;
-        }
-    }
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-    }
-
-    public function registerViews(): void
-    {
-        $sourcePath = FCPATH . 'Modules' . DIRECTORY_SEPARATOR . $this->moduleName . DIRECTORY_SEPARATOR . 'Views';
-
-        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
+        return [
+            self::Coba_1 => 'Coba 1',
+            self::Coba_2 => 'Coba 2',
+            self::Coba_3 => 'Coba 3',
+        ];
     }
 }

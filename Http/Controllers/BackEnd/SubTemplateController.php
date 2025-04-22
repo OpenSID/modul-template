@@ -35,21 +35,20 @@
  *
  */
 
-use Modules\Template\Enums\ContohEnum;
-use Modules\Template\Libraries\ContohLibrary;
-use Modules\Template\Models\Agama;
-use Modules\Template\Services\ContohService;
-use Modules\Template\Traits\ContohTrait;
+use Modules\Template\Enums\TemplateEnum;
+use Modules\Template\Libraries\TemplateLibrary;
+use Modules\Template\Models\TemplateModel;
+use Modules\Template\Services\TemplateService;
+use Modules\Template\Traits\TemplateTrait;
 
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Contoh extends AdminModulController
+class SubTemplateController extends AdminModulController
 {
-    use ContohTrait;
+    use TemplateTrait;
 
-    public $modul_ini     = 'contoh';
-    public $sub_modul_ini = 'sub-contoh';
-    public $subModulAkas = 'sub-contoh';
+    public $modul_ini     = 'Template';
+    public $sub_modul_ini = 'sub-template';
 
     public function __construct()
     {
@@ -58,7 +57,7 @@ class Contoh extends AdminModulController
     }
 
     // Views
-    public function indexAkas()
+    public function index()
     {
         return view('template::backend.index');
     }
@@ -66,25 +65,25 @@ class Contoh extends AdminModulController
     // Models
     public function model()
     {
-        $contoh = Agama::get()->toArray();
+        $Template = TemplateModel::get()->toArray();
 
-        return json($contoh);
+        return json($Template);
     }
 
     // Helpers
     public function helper()
     {
-        $contoh = contoh();
+        $Template = template();
 
-        return json($contoh);
+        return json($Template);
     }
 
     // Configs
     public function config()
     {
-        $contoh = config('contoh');
+        $template = config('template');
 
-        return json($contoh);
+        return json($template);
     }
 
     // Traits
@@ -92,7 +91,7 @@ class Contoh extends AdminModulController
     {
         $data = [
             'id'   => 1,
-            'name' => 'Contoh Data',
+            'name' => 'Data',
         ];
 
         $this->logData('Data ditampilkan: ' . json_encode($data));
@@ -103,7 +102,7 @@ class Contoh extends AdminModulController
     // Services
     public function service()
     {
-        $result = (new ContohService())->add(5, 10);
+        $result = (new TemplateService())->add(5, 10);
 
         return json(['result' => $result]);
     }
@@ -111,8 +110,8 @@ class Contoh extends AdminModulController
     // Libraries
     public function library()
     {
-        $text   = 'ini contoh text';
-        $result = ContohLibrary::wordCount($text);
+        $text   = 'ini template text';
+        $result = TemplateLibrary::wordCount($text);
 
         return json(['count' => $result]);
     }
@@ -120,11 +119,11 @@ class Contoh extends AdminModulController
     // Enums
     public function enum()
     {
-        $all         = ContohEnum::all();
-        $keys        = ContohEnum::keys();
-        $values      = ContohEnum::values();
-        $randomKey   = ContohEnum::randomKey();
-        $randomValue = ContohEnum::randomValue();
+        $all         = TemplateEnum::all();
+        $keys        = TemplateEnum::keys();
+        $values      = TemplateEnum::values();
+        $randomKey   = TemplateEnum::randomKey();
+        $randomValue = TemplateEnum::randomValue();
 
         return json([
             'all'         => $all,
@@ -138,7 +137,7 @@ class Contoh extends AdminModulController
     // Storage
     public function storage()
     {
-        $file = module_storage('app/contoh.txt');
+        $file = module_storage('app/template.txt');
 
         if (file_exists($file)) {
             header('Content-Disposition: attachment; filename="' . basename($file) . '"');

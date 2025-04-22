@@ -35,16 +35,16 @@
  *
  */
 
-use Modules\Template\Models\Agama;
+use Modules\Template\Models\TemplateModel;
 
-if (! function_exists('contoh')) {
+if (! function_exists('template')) {
     /**
-     * contoh
+     * template
      *
      * @return array
      */
-    function contoh()
+    function template()
     {
-        return Agama::get()->toArray();
+        return TemplateModel::get()->toArray();
     }
 }

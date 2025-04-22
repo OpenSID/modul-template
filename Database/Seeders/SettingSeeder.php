@@ -35,33 +35,34 @@
  *
  */
 
-namespace Modules\Template\Services;
+namespace Modules\PPID\Database\Seeders;
 
-class ContohService
+use App\Traits\Migrator;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+
+class SettingSeeder extends Seeder
 {
-    /**
-     * Hitung penjumlahan dua angka.
-     *
-     * @param float|int $a
-     * @param float|int $b
-     *
-     * @return float|int
-     */
-    public function add($a, $b)
-    {
-        return $a + $b;
-    }
+    use Migrator;
 
     /**
-     * Hitung perkalian dua angka.
+     * Run the database seeds.
      *
-     * @param float|int $a
-     * @param float|int $b
-     *
-     * @return float|int
+     * @return void
      */
-    public function multiply($a, $b)
+    public function run()
     {
-        return $a * $b;
+        Model::unguard();
+
+        $this->createSettings([
+            [
+                'judul'      => 'Contoh Pengaturan Template',
+                'key'        => 'contoh_pengaturan_template',
+                'value'      => null,
+                'keterangan' => 'Contoh pengaturan template untuk Module Template',
+                'kategori'   => 'template',
+                'jenis'      => 'text',
+            ],
+        ]);
     }
 }

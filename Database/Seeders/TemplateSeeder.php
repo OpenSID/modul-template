@@ -37,11 +37,15 @@
 
 namespace Modules\Template\Database\Seeders;
 
+use App\Traits\Migrator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class TemplateSeeder extends Seeder
 {
+    use Migrator;
+
     /**
      * Run the database seeds.
      *
@@ -51,6 +55,26 @@ class TemplateSeeder extends Seeder
     {
         Model::unguard();
 
-        // $this->call(OtherSeeder::class);
+        // Menu Utama
+        $this->createModul([
+            'modul'  => 'Template',
+            'slug'   => 'template',
+            'url'    => '',
+            'ikon'   => 'fa-book',
+            'level'  => 1,
+            'parent' => 0,
+        ]);
+
+        // Sub Menu
+        $this->createModuls([
+            [
+                'modul'       => 'Sub Template',
+                'url'         => 'template/sub-template',
+                'slug'        => 'sub-template',
+                'ikon'        => 'fa-files-o',
+                'level'       => 2,
+                'parent_slug' => 'template',
+            ],
+        ]);
     }
 }

@@ -35,18 +35,12 @@
  *
  */
 
-namespace Modules\Template\Models;
-
-use App\Models\BaseModel;
-
 defined('BASEPATH') || exit('No direct script access allowed');
 
-class Agama extends BaseModel
+class PublikController extends AdminModulController
 {
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'tweb_penduduk_agama';
+    public function index()
+    {
+        return view('template::frontend.index');
+    }
 }

@@ -35,21 +35,34 @@
  *
  */
 
-namespace Modules\Template\Traits;
+namespace Modules\Template\Libraries;
 
-use Illuminate\Support\Facades\Log;
-
-trait ContohTrait
+class TemplateLibrary
 {
     /**
-     * Tambahkan log ketika data ditampilkan.
-     *
-     * @param string $message
-     *
-     * @return void
+     * Hitung jumlah kata dalam sebuah string.
      */
-    public function logData($message)
+    public static function wordCount(string $text): int
     {
-        Log::info($message);
+        return str_word_count($text);
+    }
+
+    /**
+     * Balikkan urutan kata dalam sebuah string.
+     */
+    public static function reverseWords(string $text): string
+    {
+        $words    = explode(' ', $text);
+        $reversed = array_reverse($words);
+
+        return implode(' ', $reversed);
+    }
+
+    /**
+     * Ubah huruf pertama setiap kata menjadi huruf besar.
+     */
+    public static function capitalizeWords(string $text): string
+    {
+        return ucwords($text);
     }
 }

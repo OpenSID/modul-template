@@ -35,74 +35,33 @@
  *
  */
 
-namespace Modules\Template\Providers;
+namespace Modules\Template\Services;
 
-use Illuminate\Support\ServiceProvider;
-
-class TemplateServiceProvider extends ServiceProvider
+class TemplateService
 {
     /**
-     * @var string
-     */
-    protected $moduleName = 'Template';
-
-    /**
-     * @var string
-     */
-    protected $moduleNameLower = 'template';
-
-    /**
-     * Boot the application events.
+     * Hitung penjumlahan dua angka.
      *
-     * @return void
-     */
-    public function boot()
-    {
-        $this->registerConfig();
-        $this->registerHelpers();
-        $this->registerViews();
-    }
-
-    /**
-     * Register config.
+     * @param float|int $a
+     * @param float|int $b
      *
-     * @return void
+     * @return float|int
      */
-    protected function registerConfig()
+    public function add($a, $b)
     {
-        $this->mergeConfigFrom(
-            __DIR__ . '/../Config/config.php',
-            $this->moduleNameLower
-        );
+        return $a + $b;
     }
 
     /**
-     * Register helpers.
-     * 
-     * @return void
-     */
-    protected function registerHelpers()
-    {
-        $helperPath = __DIR__ . '/../Helpers/template_helper.php';
-
-        if (file_exists($helperPath)) {
-            require_once $helperPath;
-        }
-    }
-
-    /**
-     * Register the service provider.
+     * Hitung perkalian dua angka.
      *
-     * @return void
+     * @param float|int $a
+     * @param float|int $b
+     *
+     * @return float|int
      */
-    public function register()
+    public function multiply($a, $b)
     {
-    }
-
-    public function registerViews(): void
-    {
-        $sourcePath = FCPATH . 'Modules' . DIRECTORY_SEPARATOR . $this->moduleName . DIRECTORY_SEPARATOR . 'Views';
-
-        $this->loadViewsFrom($sourcePath, $this->moduleNameLower);
+        return $a * $b;
     }
 }

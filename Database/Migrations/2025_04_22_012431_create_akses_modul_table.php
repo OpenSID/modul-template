@@ -11,7 +11,7 @@
  * Aplikasi dan source code ini dirilis berdasarkan lisensi GPL V3
  *
  * Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * Hak Cipta 2016 - 2024 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * Hak Cipta 2016 - 2025 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  *
  * Dengan ini diberikan izin, secara gratis, kepada siapa pun yang mendapatkan salinan
  * dari perangkat lunak ini dan file dokumentasi terkait ("Aplikasi Ini"), untuk diperlakukan
@@ -29,40 +29,54 @@
  * @package   OpenSID
  * @author    Tim Pengembang OpenDesa
  * @copyright Hak Cipta 2009 - 2015 Combine Resource Institution (http://lumbungkomunitas.net/)
- * @copyright Hak Cipta 2016 - 2024 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
+ * @copyright Hak Cipta 2016 - 2025 Perkumpulan Desa Digital Terbuka (https://opendesa.id)
  * @license   http://www.gnu.org/licenses/gpl.html GPL V3
  * @link      https://github.com/OpenSID/OpenSID
  *
  */
 
-namespace Modules\Template\Libraries;
+use App\Traits\Migrator;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Modules\Template\Models\TemplateModel;
+use Illuminate\Database\Migrations\Migration;
+use Modules\Template\Database\Seeders\TemplateSeeder;
 
-class ContohLibrary
-{
+return new class () extends Migration {
+    use Migrator;
+
     /**
-     * Hitung jumlah kata dalam sebuah string.
+     * Run the migrations.
      */
-    public static function wordCount(string $text): int
+    public function up(): void
     {
-        return str_word_count($text);
+        (new TemplateSeeder())->run();
+
+        // Migrasi berulang
+        if (! Schema::hasTable('template_contoh')) {
+            Schema::create('template_contoh', static function (Blueprint $table) {
+                $table->uuid()->primary();
+                $table->configId();
+                $table->string('judul');
+                $table->timesWithUserstamps();
+            });
+
+            // Tambahkan data awal
+            TemplateModel::create([
+                'judul' => 'Template Contoh',
+            ]);
+        }
     }
 
     /**
-     * Balikkan urutan kata dalam sebuah string.
+     * Reverse the migrations.
      */
-    public static function reverseWords(string $text): string
+    public function down(): void
     {
-        $words    = explode(' ', $text);
-        $reversed = array_reverse($words);
+        $id = identitas('id');
+        $this->deleteSetting(['config_id' => $id, 'kategori' => 'template']);
+        $this->deleteModul(['config_id' => $id, 'slug' => 'template']);
 
-        return implode(' ', $reversed);
+        Schema::dropIfExistsDBGabungan('template_contoh', TemplateModel::class);
     }
-
-    /**
-     * Ubah huruf pertama setiap kata menjadi huruf besar.
-     */
-    public static function capitalizeWords(string $text): string
-    {
-        return ucwords($text);
-    }
-}
+};
