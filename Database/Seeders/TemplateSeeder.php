@@ -75,5 +75,7 @@ class TemplateSeeder extends Seeder
                 'parent_slug' => 'template',
             ],
         ]);
+
+        $this->call(SettingSeeder::class);
     }
 }

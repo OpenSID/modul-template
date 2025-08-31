@@ -35,7 +35,7 @@
  *
  */
 
-namespace Modules\PPID\Database\Seeders;
+namespace Modules\Template\Database\Seeders;
 
 use App\Traits\Migrator;
 use Illuminate\Database\Eloquent\Model;
@@ -60,7 +60,7 @@ class SettingSeeder extends Seeder
                 'key'        => 'contoh_pengaturan_template',
                 'value'      => null,
                 'keterangan' => 'Contoh pengaturan template untuk Module Template',
-                'kategori'   => 'template',
+                'kategori'   => 'Template',
                 'jenis'      => 'text',
             ],
         ]);

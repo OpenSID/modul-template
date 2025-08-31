@@ -47,8 +47,9 @@ class SubTemplateController extends AdminModulController
 {
     use TemplateTrait;
 
-    public $modul_ini     = 'Template';
-    public $sub_modul_ini = 'sub-template';
+    public $modul_ini           = 'Template';
+    public $sub_modul_ini       = 'sub-template';
+    public $kategori_pengaturan = 'Template';
 
     public function __construct()
     {
@@ -59,7 +60,7 @@ class SubTemplateController extends AdminModulController
     // Views
     public function index()
     {
-        return view('template::backend.index');
+        return view('template::backend.sub-template.index');
     }
 
     // Models
